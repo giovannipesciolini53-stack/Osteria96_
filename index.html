@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osteria 96 - Orto Cucina Tradizione</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1c3127;
+            --accent: #d4a373;
+            --accent-hover: #bc8a5f;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #212529;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            padding-bottom: 120px;
+            overflow-x: hidden;
+        }
+
+        /* Hero Banner Elegante con Sfondo Solido e Sfumatura */
+        .hero {
+            position: relative;
+            height: 65vh;
+            min-height: 420px;
+            background: linear-gradient(135deg, #1c3127 0%, #0d1712 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        .badge-stars {
+            background: rgba(212, 163, 115, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            border: 1px solid var(--accent);
+            color: #fefae0;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #fefae0;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .hero p.subtitle {
+            font-size: 1.3rem;
+            color: #e9edc9;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-hero {
+            background-color: var(--accent);
+            color: #ffffff;
+            padding: 12px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-hero.outline {
+            background: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+
+        /* Sezione La Nostra Storia */
+        .story-section {
+            max-width: 800px;
+            margin: -40px auto 30px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .story-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .story-section p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Categorie Menu Fisse/Scorrevoli */
+        .category-nav-wrapper {
+            position: sticky;
+            top: 0;
+            background: rgba(248, 249, 250, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 0 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            scrollbar-width: none;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Container Menu e Piatti */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .menu-category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin: 40px 0 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            scroll-margin-top: 70px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 600px) {
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .card-top h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            flex-grow: 1;
+            padding-right: 10px;
+        }
+
+        .price-tag {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .card-desc {
+            font-size: 0.88rem;
+            color: #6c757d;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .btn-add-item {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            transition: transform 0.1s;
+        }
+
+        .btn-add-item:active {
+            transform: scale(0.9);
+            background-color: var(--accent);
+        }
+
+        /* Sezione Vieni a Trovarci */
+        .location-section {
+            background: var(--primary);
+            color: white;
+            border-radius: 24px;
+            padding: 35px 25px;
+            margin: 50px 0 20px;
+            text-align: center;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+        }
+
+        .location-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #fefae0;
+            margin-bottom: 15px;
+        }
+
+        .location-info {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #e9edc9;
+            margin-bottom: 20px;
+        }
+
+        .btn-map {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .btn-map:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Carrello Floating Bottom */
+        .cart-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            width: calc(100% - 32px);
+            max-width: 600px;
+            background: rgba(28, 49, 39, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.15);
+            z-index: 999;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .cart-bar.visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .cart-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-count {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .cart-total {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .btn-send-wa {
+            background-color: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: background 0.3s;
+        }
+
+        .btn-send-wa:hover {
+            background-color: #1ebe57;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Banner -->
+    <div class="hero">
+        <div class="badge-stars">⭐ 4.8 / 5.0 (110+ Recensioni)</div>
+        <h1>Osteria 96</h1>
+        <p class="subtitle">Orto & Cucina Tradizione</p>
+        <div class="hero-btns">
+            <a href="tel:+390612345678" class="btn-hero">📞 Chiama Ora</a>
+            <a href="#menu" class="btn-hero outline">📋 Sfoglia Menu</a>
+        </div>
+    </div>
+
+    <!-- Sezione La Nostra Storia -->
+    <div class="story-section">
+        <h2>La Nostra Storia</h2>
+        <p>Nel cuore di Roma, <strong>Osteria 96</strong> unisce l'amore per le ricette autentiche della tradizione romana ai prodotti freschissimi provenienti direttamente dal nostro orto a KM 0. Ogni piatto celebra la stagionalità, la genuinità e il piacere di stare a tavola insieme.</p>
+    </div>
+
+    <!-- Navigation Categorie Scorrevoli -->
+    <div class="category-nav-wrapper">
+        <div class="category-nav">
+            <a href="#antipasti" class="cat-btn">🥗 Antipasti</a>
+            <a href="#primi" class="cat-btn">🍝 Primi</a>
+            <a href="#secondi" class="cat-btn">🥩 Secondi</a>
+            <a href="#contorni" class="cat-btn">🥬 Contorni</a>
+            <a href="#dolci" class="cat-btn">🍰 Dolci</a>
+        </div>
+    </div>
+
+    <!-- Menu Container -->
+    <div class="container" id="menu">
+
+        <!-- ANTIPASTI -->
+        <h2 class="menu-category-title" id="antipasti">Antipasti dell'Orto</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Polpetta Picchiapò</h3>
+                        <span class="price-tag">€ 8,00</span>
+                    </div>
+                    <p class="card-desc">Polpetta tradizionale stufata nel pomodoro e cipolla dolce.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Tradizione Romana</span>
+                    <button class="btn-add-item" onclick="addToCart('Polpetta Picchiapò', 8.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Polpetta Genovese</h3>
+                        <span class="price-tag">€ 8,00</span>
+                    </div>
+                    <p class="card-desc">Cottura lenta con stracotto di cipolle dorate.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Specialità</span>
+                    <button class="btn-add-item" onclick="addToCart('Polpetta Genovese', 8.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Caprese dal 96'</h3>
+                        <span class="price-tag">€ 12,00</span>
+                    </div>
+                    <p class="card-desc">Mozzarella di bufala, pomodori dell'orto e pesto di basilico fresco.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Freschezza KM 0</span>
+                    <button class="btn-add-item" onclick="addToCart('Caprese dal 96', 12.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Frittura Carciofi & Funghi</h3>
+                        <span class="price-tag">€ 11,00</span>
+                    </div>
+                    <p class="card-desc">Panatura leggera e croccante preparata con farina di riso.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Farina di Riso</span>
+                    <button class="btn-add-item" onclick="addToCart('Frittura Carciofi & Funghi', 11.00)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIMI -->
+        <h2 class="menu-category-title" id="primi">I Primi della Tradizione</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Rigatoni all'Amatriciana</h3>
+                        <span class="price-tag">€ 13,00</span>
+                    </div>
+                    <p class="card-desc">Guanciale croccante, pomodoro San Marzano e pecorino romano DOP.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">I Classici</span>
+                    <button class="btn-add-item" onclick="addToCart('Rigatoni all\'Amatriciana', 13.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Spaghetti alla Carbonara</h3>
+                        <span class="price-tag">€ 13,00</span>
+                    </div>
+                    <p class="card-desc">Uova fresche, guanciale dorato e pepe nero macinato al momento.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">I Classici</span>
+                    <button class="btn-add-item" onclick="addToCart('Spaghetti alla Carbonara', 13.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Fusillone Ragù di Coniglio</h3>
+                        <span class="price-tag">€ 16,00</span>
+                    </div>
+                    <p class="card-desc">Pasta trafilata in bronzo condita con ragù bianco di coniglio ed erbe.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Piatto dello Chef</span>
+                    <button class="btn-add-item" onclick="addToCart('Fusillone Ragù di Coniglio', 16.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Picio Genovese di Coda</h3>
+                        <span class="price-tag">€ 16,00</span>
+                    </div>
+                    <p class="card-desc">Pici fatti in casa conditi con genovese di coda alla vaccinara.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Imperdibile</span>
+                    <button class="btn-add-item" onclick="addToCart('Picio Genovese di Coda', 16.00)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECONDI -->
+        <h2 class="menu-category-title" id="secondi">I Secondi Piatti</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Tagliata con Patate</h3>
+                        <span class="price-tag">€ 24,00</span>
+                    </div>
+                    <p class="card-desc">Taglio pregiato di manzo servito con patate al forno profumate al rosmarino.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Carne Scelta</span>
+                    <button class="btn-add-item" onclick="addToCart('Tagliata con Patate', 24.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Galletto ai Peperoni</h3>
+                        <span class="price-tag">€ 20,00</span>
+                    </div>
+                    <p class="card-desc">Galletto cotto a bassa temperatura con stufato di peperoni dolci dell'orto.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Genuino</span>
+                    <button class="btn-add-item" onclick="addToCart('Galletto ai Peperoni', 20.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Straccetti alla Pizzaiola</h3>
+                        <span class="price-tag">€ 16,00</span>
+                    </div>
+                    <p class="card-desc">Teneri straccetti di manzo in salsa di pomodoro fresco, origano e aglio.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Tradizione</span>
+                    <button class="btn-add-item" onclick="addToCart('Straccetti alla Pizzaiola', 16.00)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTORNI -->
+        <h2 class="menu-category-title" id="contorni">Contorni dell'Orto</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Cicoria o Broccoletti Ripassati</h3>
+                        <span class="price-tag">€ 6,00</span>
+                    </div>
+                    <p class="card-desc">Verdure fresche dell'orto ripassate in padella con olio, aglio e peperoncino.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">KM 0</span>
+                    <button class="btn-add-item" onclick="addToCart('Cicoria e Broccoletti', 6.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Patate al Forno</h3>
+                        <span class="price-tag">€ 5,00</span>
+                    </div>
+                    <p class="card-desc">Patate croccanti dorate al forno con erbe aromatiche dell'orto.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Classico</span>
+                    <button class="btn-add-item" onclick="addToCart('Patate al Forno', 5.00)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOLCI -->
+        <h2 class="menu-category-title" id="dolci">Dolci Fatti in Casa</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Tiramisù della Casa</h3>
+                        <span class="price-tag">€ 7,00</span>
+                    </div>
+                    <p class="card-desc">Il classico dolce italiano con mascarpone fresco, savoiardi e caffè.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Artigianale</span>
+                    <button class="btn-add-item" onclick="addToCart('Tiramisù della Casa', 7.00)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="card-top">
+                        <h3>Panna Cotta</h3>
+                        <span class="price-tag">€ 6,00</span>
+                    </div>
+                    <p class="card-desc">Panna cotta delicata con coulis di frutti di bosco o cioccolato fondente.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="tag-badge">Fresco</span>
+                    <button class="btn-add-item" onclick="addToCart('Panna Cotta', 6.00)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIENI A TROVARCI -->
+        <div class="location-section">
+            <h2>Vieni a Trovarci & Prenota</h2>
+            <div class="location-info">
+                <p>📍 <strong>Indirizzo:</strong> Via Dante de Blasi, 96, 00151 Roma</p>
+                <p>🕒 <strong>Orari:</strong> Martedì - Domenica (Pranzo 12:30 - 15:00 | Cena 19:30 - 23:00)</p>
+                <p>❌ <strong>Lunedì:</strong> Chiuso per turno</p>
+            </div>
+            <a href="https://maps.google.com" target="_blank" class="btn-map">🗺️ Apri in Google Maps</a>
+        </div>
+
+    </div>
+
+    <!-- Carrello Bar Fisso -->
+    <div class="cart-bar" id="cartBar">
+        <div class="cart-info">
+            <span class="cart-count" id="cartCount">0 piatti selezionati</span>
+            <span class="cart-total" id="cartTotal">Totale: € 0,00</span>
+        </div>
+        <button class="btn-send-wa" onclick="sendWhatsAppOrder()">Invia Ordine su WA 📲</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Osteria 96 - Via Dante de Blasi, 96, Roma</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let total = 0;
+        const cartBar = document.getElementById('cartBar');
+
+        function addToCart(name, price) {
+            cart.push({ name: name, price: price });
+            total += price;
+            
+            document.getElementById('cartCount').innerText = cart.length + " piatti selezionati";
+            document.getElementById('cartTotal').innerText = "Totale: € " + total.toFixed(2).replace('.', ',');
+            
+            if (!cartBar.classList.contains('visible')) {
+                cartBar.classList.add('visible');
+            }
+        }
+
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                alert("Seleziona almeno un piatto toccando il tasto + !");
+                return;
+            }
+
+            let phone = "393331234567"; // Inserisci il numero WhatsApp reale del locale
+            let text = "Salve! Vorrei ordinare/prenotare i seguenti piatti da Osteria 96:\n\n";
+
+            cart.forEach((item) => {
+                text += "• " + item.name + " (€ " + item.price.toFixed(2).replace('.', ',') + ")\n";
+            });
+
+            text += "\nTotale complessivo: € " + total.toFixed(2).replace('.', ',') + "\n\nAttendo vostra conferma, grazie!";
+
+            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(text), '_blank');
+        }
+    </script>
+</body>
+</html>
